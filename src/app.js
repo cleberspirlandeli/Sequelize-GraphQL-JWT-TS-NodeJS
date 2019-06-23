@@ -1,21 +1,39 @@
 require('dotenv').config();
 
 const express = require('express');
-const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const cors = require('cors');
+const Sequelize = require('sequelize');
 
 const app = express();
-
-// mongoose.connect(process.env.MONGO_URL, {
-//     useNewUrlParser: true
-// });
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(cors());
 
-require('./routes/allRoutes')(app);
 
-module.exports = app;
+// Option 1: Passing parameters separately
+const sequelize = new Sequelize(
+    process.env.PG_DATABASE,        // database
+    process.env.PG_USER,            // username
+    process.env.PG_PASSWORD,        // password
+    {
+        host: process.env.PG_HOST,  // localhost
+        dialect: 'postgres'
+    }
+);
+
+sequelize
+    .authenticate()
+    .then(() => {
+        console.log('Connection has been established successfully.');
+    })
+    .catch(err => {
+        console.error('Unable to connect to the database:', err);
+    });
+
+
+app.listen(process.env.PORT, () => {
+    console.log('rodando porta ' + process.env.PORT);
+});
