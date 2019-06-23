@@ -12,6 +12,10 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
+app.get('teste', (req, res, next) => {
+    res.status(200).send('ok');
+})
+
 
 // Option 1: Passing parameters separately
 const sequelize = new Sequelize(
