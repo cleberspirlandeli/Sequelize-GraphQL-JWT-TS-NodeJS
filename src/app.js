@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 app.use(cors());
 
-app.get('teste', (req, res, next) => {
+app.get('/teste', (req, res, next) => {
     res.status(200).send('ok');
 })
 
