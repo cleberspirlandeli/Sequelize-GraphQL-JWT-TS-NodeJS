@@ -1,33 +1,4 @@
-require('dotenv').config();
-
-const express = require('express');
-const bodyParser = require('body-parser')
-const cors = require('cors');
-
 const Sequelize = require('sequelize');
-
-const app = express();
-
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-
-app.use(cors());
-
-app.get('/teste', (req, res, next) => {
-    res.status(200).send('ok');
-})
-
-
-
-
-
-
-/*
-*
-*
-*
-*
-*/
 
 const sequelize = new Sequelize(
     'sequelize', // database
@@ -58,10 +29,7 @@ const User = sequelize.define('user', {
         type: Sequelize.DATE,
         allowNull: false,
         validate: {
-            isAfter: {
-                args: '2000-01-01',
-                msg: 'Idade precisa ser acima de 2000'
-            }
+            isAfter: "2000-01-01"
         }
     },
     email: {
@@ -84,33 +52,5 @@ const User = sequelize.define('user', {
     }
 });
 
-
-User.sync()
-
-
-User.create({
-    name: 'Cleber Rezende',
-    phone: '991696717',
-    age: '2001/12/18',
-    email: 'contato@gmail.com',
-    number: 1
-})
-
-
-
-
-/*
-*
-*
-*
-*
-*/
-
-
-
-
-
-
-app.listen(process.env.PORT, () => {
-    console.log('rodando porta ' + process.env.PORT);
-});
+User.sync({ force: true })
+// module.exports = sequelize;
