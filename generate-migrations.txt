@@ -1,0 +1,27 @@
+GENERAL COMMANDS
+Update the database - MIGRATIONS
+node_modules/.bin/sequelize db:migrate
+
+UNDO MIGRATIONS
+sequelize db:migrate:undo
+sequelize db:migrate:undo:all
+
+
+GENERATE MIGRATION
+sequelize migration:create --name=create-yourNameMigration
+node_modules/.bin/sequelize migration:create --name=create-yourNameMigration
+
+
+GENERATE SEEDERS
+node_modules/.bin/sequelize seed:generate --name users
+
+
+
+
+
+
+
+// references
+// https://medium.com/@diomalta/migrations-e-seeders-no-sequelizejs-67ba3571ed0e
+// https://blog.rocketseat.com.br/nodejs-express-sequelize/
+// http://docs.sequelizejs.com/manual/associations.html

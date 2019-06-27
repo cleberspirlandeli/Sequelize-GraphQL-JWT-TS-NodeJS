@@ -5,4 +5,3 @@ module.exports = {
   host: 'localhost',
   dialect: 'postgres',
 }
-
